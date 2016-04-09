@@ -112,7 +112,7 @@ local function modadd(msg)
     blocked_words = {},
   }
   save_data(_config.moderation.data, data)
-  return 'Group has been added.'
+  return 'SuperGroup Is Install'
 end
 
 local function modrem(msg)
@@ -122,13 +122,13 @@ local function modrem(msg)
   local data = load_data(_config.moderation.data)
   local receiver = get_receiver(msg)
   if not data[tostring(msg.to.id)] then
-    return 'Group is not added.'
+    return 'SuperGroup Is Not Install'
   end
 
   data[tostring(msg.to.id)] = nil
   save_data(_config.moderation.data, data)
 
-  return 'Group has been removed'
+  return 'SuperGroup Is UnInstall'
 end
 
 local function promote(receiver, username, user_id)
@@ -561,10 +561,10 @@ function run(msg, matches)
       return modlist(msg)
     end
     
-    if matches[1] == 'upmanager' then
+    if matches[1] == 'addadmin' then
       if not is_admin(msg) then
         if not is_spromoted(msg.to.id, msg.from.id) then
-          return "You're not a leader"
+          return "You're Not Leader"
         end
       end
       if not matches[2] and msg.reply_id then
@@ -581,10 +581,10 @@ function run(msg, matches)
       channel_get_users(receiver, channel_username_id, {get_cmd= get_cmd, receiver=receiver, member=member})
     end
     
-    if matches[1] == 'inmanager' then
+    if matches[1] == 'remadmin' then
       if not is_admin(msg) then
         if not is_spromoted(msg.to.id, msg.from.id) then
-          return "You're not a leader"
+          return "You're Not Leader"
         end
       end
       if not matches[2] and msg.reply_id then
@@ -663,24 +663,24 @@ return {
           },
       },
   patterns = {
-    "^/(modadd)$",
-    "^/(modrem)$",
-    "^/(spromote) (.*)$",
-    "^/(spromote)$",
-    "^/(sdemote) (.*)$",
-    "^/(sdemote)$",
-    "^/(promote) (.*)$",
-    "^/(promote)$",
-    "^/(demote) (.*)$",
-    "^/(demote)$",
-    "^/(upmanager) (.*)$",
-    "^/(upmanager)",
-    "^/(inmanager) (.*)$",
-    "^/(inmanager)",
-    "^/(modlist)$",
-    "^/(adminprom) (.*)$", -- sudoers only
-    "^/(admindem) (.*)$", -- sudoers only
-    "^/(adminlist)$",
+    "^[!#/](modadd)$",
+    "^[!#/](modrem)$",
+    "^[!#/](spromote) (.*)$",
+    "^[!#/](spromote)$",
+    "^[!#/](sdemote) (.*)$",
+    "^[!#/](sdemote)$",
+    "^[!#/](promote) (.*)$",
+    "^[!#/](promote)$",
+    "^[!#/](demote) (.*)$",
+    "^[!#/](demote)$",
+    "^[!#/](addadmin) (.*)$",
+    "^[!#/](addadmin)",
+    "^[!#/](remadmin) (.*)$",
+    "^[!#/](remadmin)",
+    "^[!#/](modlist)$",
+    "^[!#/](adminprom) (.*)$", -- sudoers only
+    "^[!#/](admindem) (.*)$", -- sudoers only
+    "^[!#/](adminlist)$",
     "^!!tgservice (chat_add_user)$",
     "^!!tgservice (chat_created)$",
   }, 

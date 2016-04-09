@@ -299,7 +299,7 @@ local function show_group_settings(msg, data)
         for k,v in pairs(data[tostring(msg.to.id)]['blocked_words']) do
             wordlist = wordlist..' / '..k
         end
-        local text = "Group settings:\nLock group name : "..settings.lock_name.."\nLock group photo : "..settings.lock_photo.."\nLock group member : "..settings.lock_member.."\nLock bot : "..settings.lock_bot.."\nLock share link : "..settings.lock_link.."\nLock for public : "..settings.lock_inviteme.."\nAnti sticker : "..settings.lock_sticker.."\nLock share image : "..settings.lock_image.."\nLock share file : "..settings.lock_file.."\n\nBlocked words : "..wordlist
+        local text = "Group Settings:\n\nLock group name : "..settings.lock_name.."\nLock group photo : "..settings.lock_photo.."\nLock group member : "..settings.lock_member.."\nLock bot : "..settings.lock_bot.."\nLock share link : "..settings.lock_link.."\nLock for public : "..settings.lock_inviteme.."\nAnti sticker : "..settings.lock_sticker.."\nLock share image : "..settings.lock_image.."\nLock share file : "..settings.lock_file.."\n\nBlocked words : "..wordlist
         return text
     else
         local settings = data[tostring(msg.to.id)]['settings']
@@ -307,7 +307,7 @@ local function show_group_settings(msg, data)
         for k,v in pairs(data[tostring(msg.to.id)]['blocked_words']) do
             wordlist = wordlist..' / '..k
         end
-        local text = "Group settings:\nLock group member : "..settings.lock_member.."\nLock bot : "..settings.lock_bot.."\nLock share link : "..settings.lock_link.."\nLock for public : "..settings.lock_inviteme.."\nAnti sticker : "..settings.lock_sticker.."\nLock share image : "..settings.lock_image.."\nLock share file : "..settings.lock_file.."\nLock talking : "..settings.lock_talk.."\n\nBlocked words : "..wordlist
+	        local text = "SuperGroup Settings:\n\n #Lock_Member: "..settings.lock_member.."\n #Lock_Bot: "..settings.lock_bot.."\n #Lock_Link: "..settings.lock_link.."\n #Lock_Public: "..settings.lock_inviteme.."\n #Lock_Sticker: "..settings.lock_sticker.."\n #Lock_Image: "..settings.lock_image.."\n #Lock_File: "..settings.lock_file.."\n #Lock_Talking: "..settings.lock_talk.."\n\n\nBlocked Words: "..wordlist
         return text
     end
 end
@@ -459,12 +459,12 @@ local function lock_group_talk(msg, data)
     end
     local group_talk_lock = data[tostring(msg.to.id)]['settings']['lock_talk']
     if group_talk_lock == 'yes' then
-        return 'Silent group already enabled'
+        return 'MuteAll Is Already Install'
     else
         data[tostring(msg.to.id)]['settings']['lock_talk'] = 'yes'
         save_data(_config.moderation.data, data)
     end
-    return 'Silent group has been enabled'
+    return 'MuteAll Is Install'
 end
 
 local function unlock_group_talk(msg, data)
@@ -473,17 +473,17 @@ local function unlock_group_talk(msg, data)
     end
     local group_talk_lock = data[tostring(msg.to.id)]['settings']['lock_talk']
     if group_talk_lock == 'no' then
-        return 'Silent group is not enabled'
+        return 'MuteAll Is Not Install'
     else
         data[tostring(msg.to.id)]['settings']['lock_talk'] = 'no'
         save_data(_config.moderation.data, data)
-    return 'Silent group has been disabled'
+    return 'MuteAll Is UnInstall'
     end
 end
 
 local function lock_group_all(msg, data)
     if not is_momod(msg) then
-        return "For moderators only!"
+        return "For Moderators Only"
     end
     return 'lock all'
 end
@@ -527,7 +527,7 @@ local function pre_process(msg)
             local msgs = tonumber(redis:get(hash) or 0)
             if msgs > NUM_MSG_MAX then
                 if not is_momod(msg) then
-                    send_large_msg(receiver, 'Don\'t spam!')
+                    send_large_msg(receiver, ' Spam Is Not Allow ')
                     chat_del_user(receiver, 'user#id'..msg.from.id, ok_cb, true)
                     msg = nil
                     return nil
@@ -636,7 +636,7 @@ local function pre_process(msg)
             local msgs = tonumber(redis:get(hash) or 0)
             if msgs > NUM_MSG_MAX then
                 if not is_momod(msg) then
-                    send_large_msg(receiver, 'Don\'t spam!')
+                    send_large_msg(receiver, 'Spam Not Allow')
                     channel_kick_user(receiver, 'user#id'..msg.from.id, ok_cb, true)
                     delete_msg(msg.id, ok_cb, false)
                     msg = nil
@@ -800,7 +800,7 @@ function run(msg, matches)
             if matches[1] == 'rules' then
                 return get_rules(msg, data)
             end
-            if matches[1] == 'close' then --group lock *
+            if matches[1] == 'lock' then --group lock *
                 if matches[2] == 'name' then
                     return lock_group_name(msg, data)
                 end
@@ -835,7 +835,7 @@ function run(msg, matches)
                 	return lock_group_all(msg, data)
                 end
             end
-            if matches[1] == 'open' then --group unlock *
+            if matches[1] == 'unlock' then --group unlock *
                 if matches[2] == 'name' then
                     return unlock_group_name(msg, data)
                 end
@@ -940,7 +940,7 @@ function run(msg, matches)
             if matches[1] == 'rules' then
                 return get_rules(msg, data)
             end
-            if matches[1] == 'close' then --group lock *
+            if matches[1] == 'lock' then --group lock *
                 --[[if matches[2] == 'name' then
                     return lock_group_name(msg, data)
                 end
@@ -968,14 +968,14 @@ function run(msg, matches)
                 if matches[2] == 'file' then
                 	return lock_group_file(msg, data)
                 end
-                if matches[2] == 'chat' then
+                if matches[2] == 'all' then
                 	return lock_group_talk(msg, data)
                 end
                 --if matches[2] == 'all' then
                 --	return lock_group_all(msg, data)
                 --end
             end
-            if matches[1] == 'open' then --group unlock *
+            if matches[1] == 'unlock' then --group unlock *
                 --[[if matches[2] == 'name' then
                     return unlock_group_name(msg, data)
                 end
@@ -1003,7 +1003,7 @@ function run(msg, matches)
                 if matches[2] == 'file' then
                 	return unlock_group_file(msg, data)
                 end
-                if matches[2] == 'chat' then
+                if matches[2] == 'all' then
                     return unlock_group_talk(msg, data)
                 end
                 --if matches[2] == 'all' then
@@ -1075,20 +1075,20 @@ return {
           },
       },
   patterns = {
-    "^/(block) (.+)$",
-    "^/(unblock) (.+)$",
-    "^/(getlink)$",
-    "^/(relink) (.+)$",
-    "^/(setabout) (.*)$",
-    "^/(about)$",
-    "^/(setrules) (.*)$",
-    "^/(rules)$",
-    "^/(setname) (.*)$",
-    "^/(setphoto)$",
-    "^/(close) (.*)$",
-    "^/(open) (.*)$",
-    "^/(group) (settings)$",
-    "^/(join) (.+)$",
+    "^[!#/](block) (.+)$",
+    "^[!#/](unblock) (.+)$",
+    "^[!#/](getlink)$",
+    "^[!#/](relink) (.+)$",
+    "^[!#/](setabout) (.*)$",
+    "^[!#/](about)$",
+    "^[!#/](setrules) (.*)$",
+    "^[!#/](rules)$",
+    "^[!#/](setname) (.*)$",
+    "^[!#/](setphoto)$",
+    "^[!#/](lock) (.*)$",
+    "^[!#/](unlock) (.*)$",
+    "^[!#/](group) (settings)$",
+    "^[!#/](join) (.+)$",
     "%[(photo)%]",
     "%[(document)%]",
     

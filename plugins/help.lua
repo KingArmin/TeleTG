@@ -1,89 +1,100 @@
 local function run(msg, matches)
   if is_chat_msg(msg) then
     local text = [[‌✅Commands to lock|unlock
-💭/close|open link
-💭/close|open member
-💭/close|open name
-💭/close|open bot
-💭/close|open photo
-💭/close|open sticker
-💭/close|open file 
-💭/close|open audio
+💭/lock|unlock link
+💭/lock|unlock member
+💭/lock|unlock name
+💭/lock|unlock bot
+💭/lock|unlock image
+💭/lock|unlock sticker
+💭/lock|unlock file 
+💭/lock|unlock audio
 
 ➕
 ✅Commands for control member
-💭/kick : by <reply|id|username>
-💭/ban : by <reply|id|username>
-💭/unban : by <reply|id|username>
+💭/kick @username
+💭/ban @username
+💭/unban @username
 💭/kickme
 
 ➕
 ✅Group control 
 💭/rules
-💭/setrules <write rules>
+💭/setrules [Text]
 💭/about
-💭/setabout <write about>
-💭/setphoto : then send photo
-💭/setname <write name>
+💭/setabout [Text]
+💭/setphoto
+💭/setname [Name]
 💭/id
-💭/id chat
 💭/group settings 
-💭/getlink : send link in your pv
-💭/relink <idchat> : change link group and send new link your pv
+💭/getlink 
+💭/relink 
 💭/modlist
 💭/help
+💭/TeleIran
 
 ➕
 ✅ Group Promote  commands
-💭/spromote : up leader by <reply|id|username> 
-💭/sdemote : in promote by <reply|id|username>
-💭/promote : by <reply|id|username> 
-💭/demote : by <reply|id|username> 
+💭/spromote @username
+💭/sdemote @username
+💭/promote @username
+💭/demote @username
 
 ➖🔸➖🔹➖🔸➖🔹➖]]
     return text
   end
   if is_channel_msg(msg) then
     local text = [[‌‌✅Commands to lock|unlock
-💭/close|open link
-💭/close|open member
-💭/close|open name
-💭/close|open bot
-💭/close|open photo
-💭/close|open sticker
-💭/close|open file 
-💭/close|open audio
-💭/close|open talk
+    
+💭 #lock|unlock all
+💭 #lock|unlock chat
+💭 #lock|unlock link
+💭 #lock|unlock member
+💭 #lock|unlock name
+💭 #lock|unlock image
+💭 #lock|unlock sticker
+💭 #lock|unlock file 
+💭 #lock|unlock audio
+
 
 ➕
 ✅Commands for control member
-💭/kick : by <reply|id|username>
-💭/ban : by <reply|id|username>
-💭/unban : by <reply|id|username>
-💭/kickme
+
+💭 #kick @username
+💭 #ban @username
+💭 #unban @username
+💭 #mute @username
+💭 #unmute @username
+💭 #kickme
+
 
 ➕
 ✅Group control 
-💭/rules
-💭/setrules <write rules>
-💭/about
-💭/setabout <write about>
-💭/setphoto : then send photo
-💭/setname <write name>
-💭/id
-💭/id chat
-💭/group settings 
-💭/getlink : send link in your pv
-💭/relink <idchat> : change link group and send new link your pv
-💭/modlist
-💭/help
+
+💭 #rules
+💭 #setrules [Text]
+💭 #about
+💭 #setabout [Text]
+💭 #setphoto
+💭 #setname [Name]
+💭 #id
+💭 #group settings 
+💭 #getlink 
+💭 #relink
+💭 #modlist
+💭 #help
+💭 #TeleIran
+
 
 ➕
-✅ Group Promote  commands
-💭/spromote : up leader by <reply|id|username> 
-💭/sdemote : in promote by <reply|id|username>
-💭/promote : by <reply|id|username> 
-💭/demote : by <reply|id|username> 
+✅ Group Promote Commands
+💭 #addadmin @username
+💭 #remadmin @username
+💭 #spromote @username
+💭 #sdemote @username
+💭 #promote @username
+💭 #demote @username
+
 
 ➖🔸➖🔹➖🔸➖🔹➖]]
     return text
@@ -94,12 +105,12 @@ local function run(msg, matches)
 end
 
 return {
-  description = "Help plugin. Get info from other plugins.  ", 
+  description = " Help Plugin ", 
   usage = {
-    "!help: Show list of plugins.",
+    " /help ",
   },
   patterns = {
-    "^/(help)$",
+    "^[#!/](help)$",
   }, 
   run = run,
 }
