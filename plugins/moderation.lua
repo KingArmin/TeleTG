@@ -112,7 +112,7 @@ local function modadd(msg)
     blocked_words = {},
   }
   save_data(_config.moderation.data, data)
-  return 'SuperGroup Is Not Install'
+  return 'SuperGroup Is Install'
 end
 
 local function modrem(msg)
