@@ -159,7 +159,7 @@ local function demote(receiver, username, user_id)
   return send_large_msg(receiver, username..' has been demoted.')
 end
 
-local function upmanager(receiver, username, user_id)
+local function addadmin(receiver, username, user_id)
   channel_set_admin(receiver, 'user#id'..user_id, callback, false)
   return send_large_msg(receiver, 'Done!')
 end
@@ -270,8 +270,8 @@ local function channel_username_id(cb_extra, success, result)
           return spromote(receiver, user_id, username)
         elseif get_cmd == 'sdemote' then
           return sdemote(receiver, user_id, username)
-        elseif get_cmd == 'upmanager' then
-          return upmanager(receiver, username, user_id)
+        elseif get_cmd == 'addadmin' then
+          return addadmin(receiver, username, user_id)
         elseif get_cmd == 'inmanager' then
           return inmanager(receiver, username, user_id)
         end
@@ -318,8 +318,8 @@ local function get_msg_callback(extra, success, result)
     end
     return demote(receiver, username, user_id)
   end
-  if get_cmd == 'upmanager' then
-    return upmanager(receiver, username, user_id)
+  if get_cmd == 'addadmin' then
+    return addadmin(receiver, username, user_id)
   end
   if get_cmd == 'inmanager' then
     return inmanager(receiver, username, user_id)
@@ -561,7 +561,7 @@ function run(msg, matches)
       return modlist(msg)
     end
     
-    if matches[1] == 'upmanager' then
+    if matches[1] == 'addadmin' then
       if not is_admin(msg) then
         if not is_spromoted(msg.to.id, msg.from.id) then
           return "You're not a leader"
@@ -575,7 +575,7 @@ function run(msg, matches)
         return
       end
       if string.match(matches[2], '^%d+$') then
-        return upmanager(receiver, matches[2], matches[2])
+        return addadmin(receiver, matches[2], matches[2])
       end
       local member = string.gsub(matches[2], "@", "")
       channel_get_users(receiver, channel_username_id, {get_cmd= get_cmd, receiver=receiver, member=member})
@@ -673,8 +673,8 @@ return {
     "^/(promote)$",
     "^/(demote) (.*)$",
     "^/(demote)$",
-    "^/(upmanager) (.*)$",
-    "^/(upmanager)",
+    "^/(addadmin) (.*)$",
+    "^/(addadmin)",
     "^/(inmanager) (.*)$",
     "^/(inmanager)",
     "^/(modlist)$",
