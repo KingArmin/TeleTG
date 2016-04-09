@@ -164,7 +164,7 @@ local function addadmin(receiver, username, user_id)
   return send_large_msg(receiver, 'Done!')
 end
 
-local function inmanager(receiver, username, user_id)
+local function remadmin(receiver, username, user_id)
   channel_set_unadmin(receiver, 'user#id'..user_id, callback, false)
   return send_large_msg(receiver, 'Done!')
 end
@@ -272,8 +272,8 @@ local function channel_username_id(cb_extra, success, result)
           return sdemote(receiver, user_id, username)
         elseif get_cmd == 'addadmin' then
           return addadmin(receiver, username, user_id)
-        elseif get_cmd == 'inmanager' then
-          return inmanager(receiver, username, user_id)
+        elseif get_cmd == 'remadmin' then
+          return remadmin(receiver, username, user_id)
         end
       end
    end
@@ -321,8 +321,8 @@ local function get_msg_callback(extra, success, result)
   if get_cmd == 'addadmin' then
     return addadmin(receiver, username, user_id)
   end
-  if get_cmd == 'inmanager' then
-    return inmanager(receiver, username, user_id)
+  if get_cmd == 'remadmin' then
+    return remadmin(receiver, username, user_id)
   end
 end
 
@@ -581,7 +581,7 @@ function run(msg, matches)
       channel_get_users(receiver, channel_username_id, {get_cmd= get_cmd, receiver=receiver, member=member})
     end
     
-    if matches[1] == 'inmanager' then
+    if matches[1] == 'remadmin' then
       if not is_admin(msg) then
         if not is_spromoted(msg.to.id, msg.from.id) then
           return "You're not a leader"
@@ -675,8 +675,8 @@ return {
     "^/(demote)$",
     "^/(addadmin) (.*)$",
     "^/(addadmin)",
-    "^/(inmanager) (.*)$",
-    "^/(inmanager)",
+    "^/(remadmin) (.*)$",
+    "^/(remadmin)",
     "^/(modlist)$",
     "^/(adminprom) (.*)$", -- sudoers only
     "^/(admindem) (.*)$", -- sudoers only
