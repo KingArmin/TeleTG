@@ -248,7 +248,7 @@ local function channel_username_id(cb_extra, success, result)
           if is_spromoted(chat_id, member_id) then
             return send_large_msg(receiver, 'You can\'t do this to leader')
           end
-          send_large_msg(receiver, 'User '..member_id..' not allowed to talk!')
+          send_large_msg(receiver, 'User '..member_id..' Is Mute')
           return mute_user(member_id, chat_id)
         end
         if get_cmd == 'unmute' then
@@ -264,7 +264,7 @@ local function channel_username_id(cb_extra, success, result)
           end
           local hash =  'mute:'..chat_id..':'..member_id
           redis:del(hash)
-          return send_large_msg(receiver, 'User '..member_id..' allowed to talk')
+          return send_large_msg(receiver, 'User '..member_id..' Is UnMute')
         end
       end
    end
@@ -339,7 +339,7 @@ end
     if user_id == our_id then
       return nil
     end
-    send_large_msg(receiver, 'User '..username..' ['..user_id..'] globally banned!')
+    send_large_msg(receiver, 'User '..username..' ['..user_id..'] Public Banned')
     return superban_user(member_id, chat_id)
   end
   if get_cmd == 'mute' then
@@ -356,7 +356,7 @@ end
     if is_spromoted(chat_id, user_id) then
       return send_large_msg(receiver, 'You can\'t do this to leader')
     end
-    send_large_msg(receiver, 'User '..user_id..' not allowed to talk!')
+    send_large_msg(receiver, 'User '..user_id..' Is Mute')
     return mute_user(user_id, chat_id)
   end
   if get_cmd == 'unmute' then
@@ -366,13 +366,13 @@ end
     local data = load_data(_config.moderation.data)
     if data[tostring('admins')] then
       if data[tostring('admins')][tostring(user_id)] then
-        send_large_msg(receiver, 'Admin always allowed to talk!')
+        send_large_msg(receiver, 'Admin Always UnMute')
         return nil
       end
     end
     local hash =  'mute:'..chat_id..':'..user_id
     redis:del(hash)
-    return send_large_msg(receiver, 'User '..user_id..' allowed to talk')
+    return send_large_msg(receiver, 'User '..user_id..' Is UnMute')
   end
 end
 
@@ -524,7 +524,7 @@ local function run(msg, matches)
           return 'You can\'t do this to leader'
         end
         mute_user(matches[2], msg.to.id)
-        send_large_msg(receiver, 'User '..matches[2]..' not allowed to talk!')
+        send_large_msg(receiver, 'User '..matches[2]..' Is Mute')
       else
         local member = string.gsub(matches[2], '@', '')
         channel_get_users(receiver, channel_username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=msg.to.id, member=member})
@@ -550,7 +550,7 @@ local function run(msg, matches)
         end
         local hash =  'mute:'..msg.to.id..':'..matches[2]
         redis:del(hash)
-        return 'User '..user_id..' allowed to talk'
+        return 'User '..user_id..' Is UnMute'
       else
         local member = string.gsub(matches[2], '@', '')
         channel_get_users(receiver, channel_username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=msg.to.id, member=member})
