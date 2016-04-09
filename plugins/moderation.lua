@@ -14,7 +14,7 @@ local function spromote(receiver, user_id, username)
   local chat_id = string.gsub(receiver, '.+#id', '')
   local data = load_data(_config.moderation.data)
   if not data[tostring(chat_id)] then
-    return send_large_msg(receiver, 'Group is not added.')
+    return send_large_msg(receiver, 'Group Is Not Install')
   end
   if data[tostring(chat_id)]['moderators'][tostring(user_id)] then
     if is_spromoted(chat_id, user_id) then
@@ -44,7 +44,7 @@ local function sdemote(receiver, user_id, username)
   save_data(_config.moderation.data, data)
   local hash =  'sprom:'..chat_id..':'..user_id
   redis:del(hash)
-  send_large_msg(receiver, 'User '..username..' ['..user_id..'] demoted!')
+  send_large_msg(receiver, 'User '..username..' ['..user_id..'] Demoted')
 end
 
 local function check_member(cb_extra, success, result)
@@ -112,23 +112,23 @@ local function modadd(msg)
     blocked_words = {},
   }
   save_data(_config.moderation.data, data)
-  return 'Group has been added.'
+  return 'SuperGroup Is Not Install'
 end
 
 local function modrem(msg)
   if not is_admin(msg) then
-    return "You're not admin"
+    return "You're Not Admin"
   end
   local data = load_data(_config.moderation.data)
   local receiver = get_receiver(msg)
   if not data[tostring(msg.to.id)] then
-    return 'Group is not added.'
+    return 'SuperGroup Is Not Install'
   end
 
   data[tostring(msg.to.id)] = nil
   save_data(_config.moderation.data, data)
 
-  return 'Group has been removed'
+  return 'SuperGroup Is UnInstall'
 end
 
 local function promote(receiver, username, user_id)
@@ -314,7 +314,7 @@ local function get_msg_callback(extra, success, result)
       return nil
     end
     if is_spromoted(chat_id, user_id) then
-      return send_large_msg(receiver, 'Can\'t demote leader')
+      return send_large_msg(receiver, 'Can\'t Demote Leader')
     end
     return demote(receiver, username, user_id)
   end
@@ -329,7 +329,7 @@ end
 local function modlist(msg)
   local data = load_data(_config.moderation.data)
   if not data[tostring(msg.to.id)] then
-    return 'Group is not added.'
+    return 'SuperGroup Is Not Install'
   end
   -- determine if table is empty
   if next(data[tostring(msg.to.id)]['moderators']) == nil then --fix way
