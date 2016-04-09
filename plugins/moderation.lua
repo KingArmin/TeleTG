@@ -89,7 +89,7 @@ local function modadd(msg)
   end
   local data = load_data(_config.moderation.data)
   if data[tostring(msg.to.id)] then
-    return 'Group is already added.'
+    return 'SuperGroup Is Already Installed'
   end
   data[tostring(msg.to.id)] = {
     moderators ={},
