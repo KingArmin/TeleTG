@@ -47,7 +47,6 @@ local function run(msg, matches)
     local text = [[‌‌✅Commands to lock|unlock
     
 💭 #lock|unlock all
-💭 #lock|unlock chat
 💭 #lock|unlock link
 💭 #lock|unlock member
 💭 #lock|unlock name
