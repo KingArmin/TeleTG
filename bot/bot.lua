@@ -231,6 +231,8 @@ function create_config( )
       "weather",
       "info",
       "lockbot",
+      "kick",
+      "username",
       },
     sudo_users = {112840592,212255453,214596866},
     disabled_channels = {},
