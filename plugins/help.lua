@@ -70,16 +70,15 @@ local function run(msg, matches)
 ➕
 ✅Group control 
 
-💭 #rules
-💭 #setrules [Text]
+
+💭 #setlink [Link]
+💭 #link
 💭 #about
 💭 #setabout [Text]
 💭 #setphoto
 💭 #setname [Name]
 💭 #id
 💭 #group settings 
-💭 #getlink 
-💭 #relink
 💭 #modlist
 💭 #help
 💭 #TeleIran
