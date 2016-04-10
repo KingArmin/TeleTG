@@ -93,7 +93,7 @@ local function get_rules(msg, data)
         return 'No Link Save'
     end
     local rules = data[tostring(msg.to.id)][data_cat]
-    local rules = string.gsub( '_', ' ')..' SuperGroup Link: \n '..rules
+    local rules = ' SuperGroup Link: \n '..rules
     return rules
 end
 
