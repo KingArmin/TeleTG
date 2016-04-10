@@ -8,7 +8,6 @@ local function run(msg, matches)
 💭/lock|unlock image
 💭/lock|unlock sticker
 💭/lock|unlock file 
-💭/lock|unlock audio
 
 ➕
 ✅Commands for control member
@@ -53,7 +52,7 @@ local function run(msg, matches)
 💭 #lock|unlock image
 💭 #lock|unlock sticker
 💭 #lock|unlock file 
-💭 #lock|unlock audio
+💭 #lock|unlock bot
 
 
 ➕
