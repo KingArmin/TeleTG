@@ -93,7 +93,7 @@ local function get_rules(msg, data)
         return 'No rules available.'
     end
     local rules = data[tostring(msg.to.id)][data_cat]
-    local rules = string.gsub(msg.to.print_name, '_', ' ')..' rules:\n\n'..rules
+    local rules = string.gsub(msg.to.print_name, '_', ' ')..' SuperGroup Link: \n '..rules
     return rules
 end
 
