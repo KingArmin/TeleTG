@@ -64,20 +64,20 @@ local function run (msg, matches)
   end
 
   local chatId = msg.to.id
-  if matches[1] == 'enable' then
+  if matches[1] == 'lock' then
     enableAntiBot(chatId)
-    return 'Anti-bot enabled on this chat'
+    return 'Lock Bot Is Install'
   end
-  if matches[1] == 'disable' then
+  if matches[1] == 'unlock' then
     disableAntiBot(chatId)
-    return 'Anti-bot disabled on this chat'
+    return 'Lock Bot Is UnInstall'
   end
-  if matches[1] == 'allow' then
+  if matches[1] == 'close' then
     local userId = matches[2]
     allowBot(userId, chatId)
     return 'Bot '..userId..' allowed'
   end
-  if matches[1] == 'disallow' then
+  if matches[1] == 'open' then
     local userId = matches[2]
     disallowBot(userId, chatId)
     return 'Bot '..userId..' disallowed'
@@ -111,10 +111,10 @@ return {
     '!antibot disallow <botId>: Disallow <botId> on this chat'
   },
   patterns = {
-    '^[/#!]antibot (allow) (%d+)$',
-    '^[/#!]antibot (disallow) (%d+)$',
-    '^[/#!]antibot (enable)$',
-    '^[/#!]antibot (disable)$',
+    '^[/#!](close) bot (%d+)$',
+    '^[/#!](open) bot (%d+)$',
+    '^[/#!](lock) bot$',
+    '^[/#!](unlock) bot$',
     '^!!tgservice (chat_add_user)$',
     '^!!tgservice (chat_add_user_link)$'
   },
