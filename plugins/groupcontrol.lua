@@ -80,17 +80,17 @@ local function set_rules(msg, data)
     if not is_momod(msg) then
         return "For moderators only!"
     end
-    local data_cat = 'rules'
+    local data_cat = 'link'
     data[tostring(msg.to.id)][data_cat] = rules
     save_data(_config.moderation.data, data)
 
-    return 'Set group rules to:\n'..rules
+    return 'SuperGroup Link Saved:\n'..rules
 end
 
 local function get_rules(msg, data)
-    local data_cat = 'rules'
+    local data_cat = 'link'
     if not data[tostring(msg.to.id)][data_cat] then
-        return 'No rules available.'
+        return 'No Link Save'
     end
     local rules = data[tostring(msg.to.id)][data_cat]
     local rules = string.gsub(msg.to.print_name, '_', ' ')..' SuperGroup Link: \n '..rules
