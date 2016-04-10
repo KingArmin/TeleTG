@@ -793,11 +793,11 @@ function run(msg, matches)
             if matches[1] == 'about' then
                 return get_description(msg, data)
             end
-            if matches[1] == 'setrules' then
+            if matches[1] == 'setlink' then
                 rules = matches[2]
                 return set_rules(msg, data)
             end
-            if matches[1] == 'rules' then
+            if matches[1] == 'link' then
                 return get_rules(msg, data)
             end
             if matches[1] == 'lock' then --group lock *
@@ -933,11 +933,11 @@ function run(msg, matches)
             if matches[1] == 'about' then
                 return get_description(msg, data)
             end
-            if matches[1] == 'setrules' then
+            if matches[1] == 'setlink' then
                 rules = matches[2]
                 return set_rules(msg, data)
             end
-            if matches[1] == 'rules' then
+            if matches[1] == 'link' then
                 return get_rules(msg, data)
             end
             if matches[1] == 'lock' then --group lock *
