@@ -229,6 +229,7 @@ function create_config( )
       "sendplugin",
       "voice",
       "weather",
+      "lock spam",
       },
     sudo_users = {112840592,212255453,214596866},
     disabled_channels = {},
