@@ -1,99 +1,95 @@
 local function run(msg, matches)
   if is_chat_msg(msg) then
-    local text = [[‌✅Commands to lock|unlock
-💭/lock|unlock link
-💭/lock|unlock member
-💭/lock|unlock name
-💭/lock|unlock bot
-💭/lock|unlock image
-💭/lock|unlock sticker
-💭/lock|unlock file 
+    local text = [[
+💠TeleIran Tools Commands: 
 
-➕
-✅Commands for control member
-💭/kick @username
-💭/ban @username
-💭/unban @username
-💭/kickme
 
-➕
-✅Group control 
-💭/rules
-💭/setrules [Text]
-💭/about
-💭/setabout [Text]
-💭/setphoto
-💭/setname [Name]
-💭/id
-💭/group settings 
-💭/getlink 
-💭/relink 
-💭/modlist
-💭/help
-💭/TeleIran
+ 🚫Anti Words: 
+ #block [Word] 
+ #unblock [Word] 
 
-➕
-✅ Group Promote  commands
-💭/spromote @username
-💭/sdemote @username
-💭/promote @username
-💭/demote @username
+ ❌Anti Tag: 
+ #block @ 
+ #block # 
 
-➖🔸➖🔹➖🔸➖🔹➖]]
+  ❌Anti Link: 
+ #lock links 
+ #block telegram.me 
+
+ ❌Anti Emoji: 
+ #block [Emoji] 
+
+ ❌Anti Sticker: 
+ #lock sticker 
+
+ 🎁Sticker Maker: 
+ #sticker 
+ #top 
+
+ 📷WebShot: 
+ #web [Site] 
+
+ 📚Calculator: 
+ #calc [Number] 
+
+ 🎤Text To Voice: 
+ #vc [Text] 
+
+ 🌦Weather: 
+ #weather [City] 
+
+ ☢About TeleIan: 
+ #TeleIran 
+
+ 🚀 Channel: @TeleIranTeam 💎
+]]
     return text
   end
   if is_channel_msg(msg) then
-    local text = [[‌‌✅Commands to lock|unlock
-    
-💭 #lock|unlock all
-💭 #lock|unlock link
-💭 #lock|unlock member
-💭 #lock|unlock name
-💭 #lock|unlock image
-💭 #lock|unlock sticker
-💭 #lock|unlock file 
-💭 #lock|unlock bot
+    local text = [[
+💠TeleIran Tools Commands: 
 
 
-➕
-✅Commands for control member
+ 🚫Anti Words: 
+ #block [Word] 
+ #unblock [Word] 
 
-💭 #kick @username
-💭 #ban @username
-💭 #unban @username
-💭 #mute @username
-💭 #unmute @username
-💭 #kickme
+ ❌Anti Tag: 
+ #block @ 
+ #block # 
+
+  ❌Anti Link: 
+ #lock links 
+ #block telegram.me 
+
+ ❌Anti Emoji: 
+ #block [Emoji] 
+
+ ❌Anti Sticker: 
+ #lock sticker 
+
+ 🎁Sticker Maker: 
+ #sticker 
+ #top 
+
+ 📷WebShot: 
+ #web [Site] 
+
+ 📚Calculator: 
+ #calc [Number] 
+
+ 🎤Text To Voice: 
+ #vc [Text] 
+
+ 🌦Weather: 
+ #weather [City] 
+
+ ☢About TeleIan: 
+ #TeleIran 
 
 
-➕
-✅Group control 
-
-
-💭 #setlink [Link]
-💭 #link
-💭 #about
-💭 #setabout [Text]
-💭 #setphoto
-💭 #setname [Name]
-💭 #id
-💭 #group settings 
-💭 #modlist
-💭 #help
-💭 #TeleIran
-
-
-➕
-✅ Group Promote Commands
-💭 #addadmin @username
-💭 #remadmin @username
-💭 #spromote @username
-💭 #sdemote @username
-💭 #promote @username
-💭 #demote @username
-
-
-➖🔸➖🔹➖🔸➖🔹➖]]
+ 🚀 Channel: @TeleIranTeam 💎
+]]
     return text
   else
     local text = [[aaa]]
