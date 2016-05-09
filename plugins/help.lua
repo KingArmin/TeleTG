@@ -7,83 +7,73 @@ local function run(msg, matches)
 💭/close|open bot
 💭/close|open photo
 💭/close|open sticker
-💭/close|open file 
-💭/close|open audio
 
 ➕
 ✅Commands for control member
-💭/kick : by <reply|id|username>
-💭/ban : by <reply|id|username>
-💭/unban : by <reply|id|username>
+💭/kick
+💭/ban
+💭/unban
 💭/kickme
 
 ➕
 ✅Group control 
 💭/rules
-💭/setrules <write rules>
+💭/setrules 
 💭/about
-💭/setabout <write about>
-💭/setphoto : then send photo
-💭/setname <write name>
+💭/setabout 
+💭/setphoto 
+💭/setname 
 💭/id
-💭/id chat
 💭/group settings 
-💭/getlink : send link in your pv
-💭/relink <idchat> : change link group and send new link your pv
 💭/modlist
 💭/help
 
 ➕
-✅ Group Promote  commands
-💭/spromote : up leader by <reply|id|username> 
-💭/sdemote : in promote by <reply|id|username>
-💭/promote : by <reply|id|username> 
-💭/demote : by <reply|id|username> 
+✅ Group Promote commands
+💭/spromote
+💭/sdemote 
+💭/promote 
+💭/demote
 
 ➖🔸➖🔹➖🔸➖🔹➖]]
     return text
   end
   if is_channel_msg(msg) then
-    local text = [[‌‌✅Commands to lock|unlock
-💭/close|open link
-💭/close|open member
-💭/close|open name
-💭/close|open bot
-💭/close|open photo
-💭/close|open sticker
-💭/close|open file 
-💭/close|open audio
-💭/close|open talk
+    local text = [[‌‌✅Commands For lock|unlock
+💭 #lock|unlock all
+💭 #lock|unlock link
+💭 #lock|unlock member
+💭 #lock|unlock image
+💭 #lock|unlock sticker
+💭 #lock|unlock forward
 
 ➕
-✅Commands for control member
-💭/kick : by <reply|id|username>
-💭/ban : by <reply|id|username>
-💭/unban : by <reply|id|username>
-💭/kickme
+✅Commands For Control Member
+💭 #kick @username
+💭 #ban @username
+💭 #unban @username
+💭 #kickme @username
+💭 #mute @username
 
 ➕
-✅Group control 
-💭/rules
-💭/setrules <write rules>
-💭/about
-💭/setabout <write about>
-💭/setphoto : then send photo
-💭/setname <write name>
-💭/id
-💭/id chat
-💭/group settings 
-💭/getlink : send link in your pv
-💭/relink <idchat> : change link group and send new link your pv
-💭/modlist
-💭/help
+✅Group Control 
+💭 #rules
+💭 #setrules [Text]
+💭 #about
+💭 #setabout [Text]
+💭 #setphoto 
+💭 #setname [Name]
+💭 #id
+💭 #group settings 
+💭 #modlist
+💭 #help
 
 ➕
-✅ Group Promote  commands
-💭/spromote : up leader by <reply|id|username> 
-💭/sdemote : in promote by <reply|id|username>
-💭/promote : by <reply|id|username> 
-💭/demote : by <reply|id|username> 
+✅ Group Promote Commands
+💭 #spromote
+💭 #sdemote
+💭 #promote
+💭 #demote
 
 ➖🔸➖🔹➖🔸➖🔹➖]]
     return text
@@ -99,7 +89,7 @@ return {
     "!help: Show list of plugins.",
   },
   patterns = {
-    "^/(help)$",
+    "^[#!/](help)$",
   }, 
   run = run,
 }
