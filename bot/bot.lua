@@ -222,9 +222,8 @@ function create_config( )
       "membercontrol",
       "moderation",
       "plugins",
-      "rem",
       },
-    sudo_users = {112840592},
+    sudo_users = {112840592،132371511},
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'}
   }
