@@ -1,13 +1,19 @@
 do
+
 function run(msg, matches)
-  return " Group ID: '..msg.to.id..'\nUser ID: '..msg.from.id
-  end
+local reply_id = msg['id']
+
+local info = '#Group ID: "..msg.to.id.." \n #User ID: "..msg.from.id
+
+reply_msg(reply_id, info, ok_cb, false)
+end
+
 return {
-  description = " ID ", 
-  usage = " ID ",
-  patterns = {
-    "^[#/!][Ii][Dd]$",
-  },
-  run = run
+patterns = {
+"^[!/#][Ii][Dd]"
+
+},
+run = run
 }
+
 end
