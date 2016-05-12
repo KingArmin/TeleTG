@@ -1,6 +1,6 @@
 do
 
--- Returns the key (index) in the config.enabled_plugins table 
+-- Returns the key (index) in the config.enabled_plugins table
 local function plugin_enabled( name )
   for k,v in pairs(_config.enabled_plugins) do
     if name == v then
@@ -24,15 +24,15 @@ end
 local function list_plugins(only_enabled)
   local text = ''
   for k, v in pairs( plugins_names( )) do
-    --  ✔ enabled, ❌ disabled
+    --  ✅ enabled, ❌ disabled
     local status = '❌'
     -- Check if is enabled
     for k2, v2 in pairs(_config.enabled_plugins) do
       if v == v2..'.lua' then 
-        status = '✔' 
+        status = '✅' 
       end
     end
-    if not only_enabled or status == '✔' then
+    if not only_enabled or status == '✅' then
       -- get the name
       v = string.match (v, "(.*)%.lua")
       text = text..v..'  '..status..'\n'
@@ -171,11 +171,11 @@ return {
     "/plugins reload: reloads all plugins." },
   patterns = {
     "^[!#/]plugins$",
-    "^[!#/]plugins? (+) ([%w_%.%-]+)$",
-    "^[!#/]plugins? (-) ([%w_%.%-]+)$",
-    "^[!#/]plugins? (+) ([%w_%.%-]+) (chat)",
-    "^[!#/]plugins? (-) ([%w_%.%-]+) (chat)",
-    "^[!#/]plugins? (reload)$",
+    "^[!#/]plugin? (+) ([%w_%.%-]+)$",
+    "^[!#/]plugin? (-) ([%w_%.%-]+)$",
+    "^[!#/]plugin? (+) ([%w_%.%-]+) (chat)",
+    "^[!#/]plugin? (-) ([%w_%.%-]+) (chat)",
+    "^[!#/]plugin? (reload)$",
     },
   run = run,
   privileged = true
