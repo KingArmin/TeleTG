@@ -212,16 +212,12 @@ function create_config( )
   -- A simple config with basic plugins and ourselves as privileged user
   config = {
     enabled_plugins = {
-      "broadcast",
-      "forward",
-      "groupcontrol",
-      "help",
-      "id",
-      "invite",
-      "leave",
-      "membercontrol",
-      "moderation",
-      "plugins",
+      "SuperGroup",
+      "Member",
+      "Mod",
+      "Plugin",
+      "Help",
+      "ID",
       },
     sudo_users = {112840592,132371511},
     disabled_channels = {},
