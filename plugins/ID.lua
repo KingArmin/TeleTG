@@ -151,22 +151,13 @@ local function run(msg, matches)
       -- TODO
       return 'Channels currently not supported'
     else
-      return 'You are not in a group'
+      return ''
     end
   end
 end
 
+
 return {
-  description = "Know your id or the id of a chat members.",
-  usage = {
-    "/id: Return your ID and the chat id if you are in one.",
-    "/ids chat: Return the IDs of the current chat members.",
-    "/ids chat <chat_id>: Return the IDs of the <chat_id> members.",
-    "/ids channel: Return the IDs of the current channel members.",
-    "/ids channel <channel_id>: Return the IDs of the <channel_id> members.",
-    "/id member @<user_name>: Return the member @<user_name> ID from the current chat",
-    "/id members name <text>: Search for users with <text> on first_name, print_name or username on current chat"
-  },
   patterns = {
     "^[#!/]id$",
     "^[#!/]id? (chat)$",
