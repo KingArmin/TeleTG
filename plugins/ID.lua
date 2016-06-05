@@ -1,3 +1,4 @@
+--[[
 local function usernameinfo (user)
   if user.username then
     return '@'..user.username
@@ -46,9 +47,10 @@ end
 
 local function run(msg, matches)
   local receiver = get_receiver(msg)
+]]--
 
-  -- Id of the user and info about group / channel
-  if matches[1] == "/id" then
+
+  if matches[1] == "id" then
     if msg.to.type == 'channel' then
       return ('Chat ID: %s\nUser ID: %s'):format(msg.to.id, msg.from.id)
     end
@@ -59,7 +61,6 @@ local function run(msg, matches)
   elseif matches[1] == 'chat' or matches[1] == 'channel' then
     local type = matches[1]
     local chanId = matches[2]
-    -- !ids? (chat) (%d+)
     if chanId then
       local chan = ("%s#id%s"):format(type, chanId)
       if type == 'chat' then
@@ -76,7 +77,7 @@ local function run(msg, matches)
       if msg.to.type == 'chat' then
         chat_info(chan, returnids, {receiver=receiver})
       else
-        return "You are not in a group."
+        return "You Are NOT In  Group"
       end
     end
   elseif matches[1] == "member" and matches[2] == "@" then    
@@ -95,7 +96,7 @@ local function run(msg, matches)
           end
         end
         if not found then
-          send_msg(receiver, "User not found on this chat.", ok_cb, false)
+          send_msg(receiver, "User NOT Found", ok_cb, false)
         else
           local text = found.peer_id
           send_msg(receiver, text, ok_cb, false)
@@ -103,9 +104,9 @@ local function run(msg, matches)
       end, {receiver=chan, nick=nick})
     elseif msg.to.type == 'channel' then
       -- TODO
-      return 'Channels currently not supported'
+      return 'Channels NOT Support'
     else
-      return 'You are not in a group'
+      return 'You Are NOT In Group'
     end
   elseif matches[1] == "members" and matches[2] == "name" then
     
@@ -149,7 +150,7 @@ local function run(msg, matches)
       end, {receiver=chan, text=text})
     elseif msg.to.type == 'channel' then
       -- TODO
-      return 'Channels currently not supported'
+      return 'Channels NOT Support'
     else
       return ''
     end
@@ -159,8 +160,7 @@ end
 
 return {
   patterns = {
-    "^[#!/]id$",
-    "^[#!/]id? (chat)$",
+    "^[#!/][Ii][Dd]$",
   },
   run = run
 }
