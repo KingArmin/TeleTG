@@ -625,7 +625,7 @@ local function pre_process(msg)
     	end
         return msg
     end
-    if msg.to.type == 'channel' then -- THIS IS SUPERGROUPPPPPPPPPPPPPPPPPPPPP
+    if msg.to.type == 'channel' then 
         local receiver = get_receiver(msg)
         -- spam detect
         local hash = 'floodc:'..msg.from.id..':'..msg.to.id
@@ -683,7 +683,7 @@ local function pre_process(msg)
             if msg.media.type == 'photo' then
                 if data[tostring(msg.to.id)]['settings']['lock_image'] == 'yes' then
                     delete_msg(msg.id, ok_cb, false)
-                    return 'Don\'t send image'
+                    return 'Dont send image'
                 end
             end
             if msg.media.type == 'document' then
@@ -834,7 +834,7 @@ function run(msg, matches)
                 	return lock_group_all(msg, data)
                 end
             end
-            if matches[1] == 'unlock' then --group unlock *
+            if matches[1] == 'unlock' then 
                 if matches[2] == 'name' then
                     return unlock_group_name(msg, data)
                 end
@@ -844,9 +844,9 @@ function run(msg, matches)
                 if matches[2] == 'photo' then
                     return unlock_group_photo(msg, data)
                 end
-                --if matches[2] == 'bot' then
-                --	return unlock_group_bot(msg, data)
-                --end
+                if matches[2] == 'bot' then
+                	return unlock_group_bot(msg, data)
+                end
                 if matches[2] == 'link' then
                 	return unlock_group_link(msg, data)
                 end
@@ -887,7 +887,7 @@ function run(msg, matches)
             end
         end
     end
-    if is_channel_msg(msg) then -- For ChANNEL O SUPERGROUPSSSS
+    if is_channel_msg(msg) then 
         if data[tostring(msg.to.id)] then
         	local settings = data[tostring(msg.to.id)]['settings']
         	local get_cmd = matches[1]
@@ -939,8 +939,8 @@ function run(msg, matches)
             if matches[1] == 'link' then
                 return get_rules(msg, data)
             end
-            if matches[1] == 'lock' then --group lock *
-                --[[if matches[2] == 'name' then
+            if matches[1] == 'lock' then 
+                if matches[2] == 'name' then
                     return lock_group_name(msg, data)
                 end
                 if matches[2] == 'member' then
@@ -970,12 +970,12 @@ function run(msg, matches)
                 if matches[2] == 'all' then
                 	return lock_group_talk(msg, data)
                 end
-                --if matches[2] == 'all' then
-                --	return lock_group_all(msg, data)
-                --end
+                if matches[2] == 'all' then
+                	return lock_group_all(msg, data)
+                end
             end
-            if matches[1] == 'unlock' then --group unlock *
-                --[[if matches[2] == 'name' then
+            if matches[1] == 'unlock' then 
+                if matches[2] == 'name' then
                     return unlock_group_name(msg, data)
                 end
                 if matches[2] == 'member' then
@@ -1005,14 +1005,14 @@ function run(msg, matches)
                 if matches[2] == 'all' then
                     return unlock_group_talk(msg, data)
                 end
-                --if matches[2] == 'all' then
-                --	return unlock_group_all(msg, data)
-                --end
+                if matches[2] == 'all' then
+                	return unlock_group_all(msg, data)
+                end
             end
             if matches[1] == 'group' and matches[2] == 'settings' then
                 return show_group_settings(msg, data)
             end
-            --[[if matches[1] == 'setname' and is_momod(msg) then
+            if matches[1] == 'setname' and is_momod(msg) then
                 local new_name = string.gsub(matches[2], '_', ' ')
                 data[tostring(msg.to.id)]['settings']['set_name'] = new_name
                 save_data(_config.moderation.data, data) 
@@ -1024,7 +1024,7 @@ function run(msg, matches)
                 data[tostring(msg.to.id)]['settings']['set_photo'] = 'waiting'
                 save_data(_config.moderation.data, data)
                 return 'Please send me new group photo now'
-            end]]
+            end
         end
     else
         if matches[1] == 'join' and matches[2] then
@@ -1048,36 +1048,9 @@ end
 
 
 return {
-  description = "Plugin to manage group chat.", 
-  usage = {
-      user = {
-          "/about : Read group description",
-          "/rules : Read group rules",
-          },
-      moderator = {
-          "/block <word> : Block word in group",
-          "/unblock <word> : Unblock word from blocked list",
-          "/getlink : Show group invite link",
-          "/relink <group_id> : Reset group invite link",
-          "/setabout <description> : Set group description",
-          "/setrules <rules> : Set group rules",
-          "/setname <new_name> : Set group name",
-          "/setphoto : Set group photo",
-          "/<close|open> name : Lock/unlock group name",
-          "/<close|open> photo : Lock/unlock group photo",
-          "/<close|open> member : Lock/unlock group member",
-          "/<close|open> spam : Enable/disable spam protection",
-          "/<close|open> sticker : Enable/disable anti sticker",
-          "/<close|open> antilink : Enable/disable anti link",
-          "/group settings : Show group settings",
-          "/join <group id> : Join to any group by ID (if not locked)",
-          },
-      },
   patterns = {
     "^[!#/](block) (.+)$",
     "^[!#/](unblock) (.+)$",
-  --"^[!#/](getlink)$",
-  --"^[!#/](relink) (.+)$",
     "^[!#/](setabout) (.*)$",
     "^[!#/](about)$",
     "^[!#/](setlink) (.*)$",
